@@ -15,3 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "PretendPosts"
 include(":app")
+include(":domain")
+include(":data")
+include(":presentation")

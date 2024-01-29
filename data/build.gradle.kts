@@ -1,23 +1,18 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.hiltAndroid)
-    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.example.pretendposts"
+    namespace = "com.kh.data"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.pretendposts"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,21 +31,10 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildFeatures {
-        buildConfig = true
-    }
 }
 
 dependencies {
 
     implementation(libs.core.ktx)
-    implementation(libs.retrofit)
-    implementation(libs.converter)
-    implementation(libs.gson)
-    implementation(libs.hilt)
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":data")))
-    implementation(project(mapOf("path" to ":presentation")))
-    ksp(libs.hiltCompiler)
-
+    implementation(project(":domain"))
 }

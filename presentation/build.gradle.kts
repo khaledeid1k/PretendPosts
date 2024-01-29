@@ -1,23 +1,21 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.hiltAndroid)
     alias(libs.plugins.ksp)
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.example.pretendposts"
-    compileSdk = 34
+    namespace = "com.kh.presentation"
+    compileSdk =34
 
     defaultConfig {
-        applicationId = "com.example.pretendposts"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -42,15 +40,23 @@ android {
 }
 
 dependencies {
-
+    implementation(project(":domain"))
     implementation(libs.core.ktx)
-    implementation(libs.retrofit)
-    implementation(libs.converter)
-    implementation(libs.gson)
-    implementation(libs.hilt)
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":data")))
-    implementation(project(mapOf("path" to ":presentation")))
-    ksp(libs.hiltCompiler)
 
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.navigation)
+    implementation(libs.navigationUi)
+    implementation(libs.constraintlayout)
+    implementation(libs.lottie)
+
+    implementation(libs.viewModel)
+    implementation(libs.viewModelEx)
+    implementation(libs.viewModelEx)
+    implementation(libs.viewModelLifecycle)
+
+    implementation(libs.coroutinesCore)
+
+    implementation(libs.hilt)
+    ksp(libs.hiltCompiler)
 }
