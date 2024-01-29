@@ -2,9 +2,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.ksp)
+    alias(libs.plugins.hiltAndroid)
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
+    kotlin("kapt")
 }
 
 android {
@@ -36,6 +37,7 @@ android {
     }
     buildFeatures {
         buildConfig = true
+        dataBinding= true
     }
 }
 
@@ -56,7 +58,12 @@ dependencies {
     implementation(libs.viewModelLifecycle)
 
     implementation(libs.coroutinesCore)
+    implementation (libs.databinding.runtime)
 
     implementation(libs.hilt)
-    ksp(libs.hiltCompiler)
+    kapt(libs.hiltCompiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }

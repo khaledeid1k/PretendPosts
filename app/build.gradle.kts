@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hiltAndroid)
-    alias(libs.plugins.ksp)
+    kotlin("kapt")
 }
 
 android {
@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         buildConfig = true
+        dataBinding= true
     }
 }
 
@@ -51,6 +52,9 @@ dependencies {
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":presentation")))
-    ksp(libs.hiltCompiler)
+    kapt(libs.hiltCompiler)
+}
 
+kapt {
+    correctErrorTypes = true
 }

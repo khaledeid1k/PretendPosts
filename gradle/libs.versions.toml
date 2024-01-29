@@ -1,5 +1,6 @@
 [versions]
 agp = "8.2.0-alpha12"
+databindingRuntime = "8.2.2"
 kotlin = "1.9.22"
 core-ktx = "1.9.0"
 appcompat = "1.6.1"
@@ -19,6 +20,7 @@ coroutinesCore= "1.4.2"
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+databinding-runtime = { module = "androidx.databinding:databinding-runtime", version.ref = "databindingRuntime" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
