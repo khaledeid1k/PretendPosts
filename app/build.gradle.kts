@@ -2,6 +2,10 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.ksp)
+    id("androidx.navigation.safeargs.kotlin")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -28,11 +32,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -45,4 +52,18 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.retrofit)
+    implementation(libs.converter)
+    implementation(libs.gson)
+    implementation(libs.navigation)
+    implementation(libs.navigationUi)
+    implementation(libs.viewModel)
+    implementation(libs.viewModelEx)
+    implementation(libs.viewModelEx)
+    implementation(libs.viewModelLifecycle)
+    implementation(libs.coroutinesCore)
+    implementation(libs.lottie)
+    implementation(libs.hilt)
+    ksp(libs.hiltCompiler)
+
 }
