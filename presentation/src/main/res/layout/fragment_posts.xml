@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -12,9 +14,12 @@
             name="adapter"
             type="com.kh.presentation.screens.posts.PostsAdapter" />
     </data>
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        app:showWhenIf="@{viewModel.state.error == null}"
         android:layout_height="match_parent"
         tools:context=".screens.posts.PostsFragment">
         <androidx.recyclerview.widget.RecyclerView
@@ -33,6 +38,34 @@
             app:adapterRe="@{adapter}"
             app:items="@{viewModel.state.posts}"
             tools:listitem="@layout/post_item"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:showWhenIf="@{viewModel.state.isLoading}"
+        bind:isLoading="@{viewModel.state.isLoading}" />
+
+    <include
+        android:id="@+id/error"
+        layout="@layout/error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:showWhenIf="@{viewModel.state.error != null}"
+        bind:error="@{viewModel.state.error}" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
